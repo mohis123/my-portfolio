@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TbDownload } from "react-icons/tb";
 import { HiOutlineMenu, HiX } from "react-icons/hi";
-import ResumeViewer from "./ResumeViewer";
 
 export default function Navbar() {
   const [hasShadow, setHasShadow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +41,7 @@ export default function Navbar() {
           whileTap={{ scale: 0.9 }}
           onClick={() => scrollToSection("home")}
           className="h-9 cursor-pointer"
-          src="/mylogo.png"
+          src="/assets/logo.svg"
           alt="Logo"
         />
 
@@ -65,8 +63,8 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <motion.button
-          onClick={() => setIsResumeOpen(true)}
+        <motion.a
+          href=""
           className="hidden relative lg:inline-block px-4 py-2 font-medium group"
         >
           <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
@@ -74,7 +72,7 @@ export default function Navbar() {
           <span className="relative text-black group-hover:text-white flex items-center gap-x-3">
             Resume <TbDownload size={16} />
           </span>
-        </motion.button>
+        </motion.a>
 
         <motion.button
           className="lg:hidden text-2xl"
@@ -113,11 +111,8 @@ export default function Navbar() {
                   </button>
                 </motion.li>
               ))}
-              <motion.button
-                onClick={() => {
-                  setIsResumeOpen(true);
-                  setIsOpen(false);
-                }}
+              <motion.a
+                href=""
                 className="relative inline-block px-4 py-2 font-semibold group"
                 whileHover={{ scale: 1.1 }}
               >
@@ -126,14 +121,11 @@ export default function Navbar() {
                 <span className="relative text-black group-hover:text-white flex items-center gap-x-3">
                   Resume <TbDownload size={16} />
                 </span>
-              </motion.button>
+              </motion.a>
             </ul>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Resume Viewer */}
-      <ResumeViewer isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </motion.nav>
   );
 }
