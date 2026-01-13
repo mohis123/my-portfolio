@@ -26,15 +26,19 @@ export default function About() {
         </h2>
 
         <p className="text-[#71717A] text-sm/6 lg:text-base mb-4 lg:mb-6">
-          I'm a passionate full-stack developer specializing in **React.js & Node.js**. I thrive on blending technical expertise with sleek UI/UX design to build high-performing, user-friendly applications.
+          I'm a Computer Science & Engineering student and an aspiring Full-Stack & Cloud-Native Developer with a strong interest in building scalable, real-world applications. I enjoy turning ideas into clean, efficient, and user-friendly solutions while constantly improving my technical depth.
         </p>
 
         <p className="text-[#71717A] text-sm/6 lg:text-base mb-4 lg:mb-6">
-          My web development journey started in **2015**, and since then, I've continuously evolved, taking on new challenges and keeping up with the latest technologies. Today, I build **cutting-edge web applications** using **Next.js, TypeScript, NestJS, TailwindCSS, Supabase, and more**.
+          I work primarily with **JavaScript**, focusing on **React.js** for frontend development and **Node.js** for backend systems. Alongside this, I'm actively learning and exploring cloud-native technologies, DevOps practices, and modern software engineering tools to prepare for high-impact engineering roles.
+        </p>
+
+        <p className="text-[#71717A] text-sm/6 lg:text-base mb-4 lg:mb-6">
+          Currently, I'm sharpening my skills in system design, data structures, backend architecture, and cloud platforms, while building projects that reflect real industry use cases. I believe in learning by building and consistently pushing myself beyond my comfort zone.
         </p>
 
         <p className="text-[#71717A] text-sm/6 lg:text-base">
-          Beyond coding, I enjoy sharing insights on **Twitter**, engaging with **Indie Hackers**, and following the journey of **early-stage startups**. Feel free to follow me on **Twitter** or check out my projects on **GitHub**.
+          Beyond coding, I enjoy exploring new tech trends, learning from developer communities, and following the journeys of innovative startups. I'm always eager to grow, collaborate, and take on challenging problems that help me evolve as an engineer.
         </p>
       </motion.div>
     </div>

@@ -6,6 +6,7 @@ import { HiOutlineMenu, HiX } from "react-icons/hi";
 export default function Navbar() {
   const [hasShadow, setHasShadow] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +16,17 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isResumeOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isResumeOpen]);
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -41,7 +53,7 @@ export default function Navbar() {
           whileTap={{ scale: 0.9 }}
           onClick={() => scrollToSection("home")}
           className="h-9 cursor-pointer"
-          src="/assets/logo.svg"
+          src="/assets/mylogo.png"
           alt="Logo"
         />
 
@@ -63,16 +75,18 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <motion.a
-          href=""
+        <motion.button
+          onClick={() => setIsResumeOpen(true)}
           className="hidden relative lg:inline-block px-4 py-2 font-medium group"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
           <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
           <span className="relative text-black group-hover:text-white flex items-center gap-x-3">
             Resume <TbDownload size={16} />
           </span>
-        </motion.a>
+        </motion.button>
 
         <motion.button
           className="lg:hidden text-2xl"
@@ -111,18 +125,69 @@ export default function Navbar() {
                   </button>
                 </motion.li>
               ))}
-              <motion.a
-                href=""
+              <motion.button
+                onClick={() => {
+                  setIsResumeOpen(true);
+                  setIsOpen(false);
+                }}
                 className="relative inline-block px-4 py-2 font-semibold group"
                 whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                 <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                 <span className="relative text-black group-hover:text-white flex items-center gap-x-3">
                   Resume <TbDownload size={16} />
                 </span>
-              </motion.a>
+              </motion.button>
             </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Resume Modal */}
+      <AnimatePresence>
+        {isResumeOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] bg-black bg-opacity-90 flex items-center justify-center p-5"
+            onClick={() => setIsResumeOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              transition={{ 
+                type: "spring", 
+                stiffness: 300, 
+                damping: 30,
+                duration: 0.5 
+              }}
+              className="relative w-full h-full max-w-5xl max-h-[90vh] bg-white rounded-lg shadow-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close Button */}
+              <motion.button
+                onClick={() => setIsResumeOpen(false)}
+                className="absolute top-4 right-4 z-10 bg-black text-white p-2 rounded-full hover:bg-gray-800 transition-colors"
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <HiX size={24} />
+              </motion.button>
+
+              {/* PDF Viewer */}
+              <div className="w-full h-full overflow-auto">
+                <iframe
+                  src="/assets/MY_RESUME.pdf"
+                  className="w-full h-full min-h-[600px] border-0"
+                  title="Resume"
+                />
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
