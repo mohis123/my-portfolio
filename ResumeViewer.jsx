@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiX } from "react-icons/hi";
 import { TbDownload } from "react-icons/tb";
 
+const RESUME_URL = "/MY_RESUME.pdf";
+
 export default function ResumeViewer({ isOpen, onClose }) {
   useEffect(() => {
     if (isOpen) {
@@ -17,7 +19,7 @@ export default function ResumeViewer({ isOpen, onClose }) {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/MY_RESUME.pdf";
+    link.href = RESUME_URL;
     link.download = "Mohith_Kumar_Resume.pdf";
     link.click();
   };
@@ -90,7 +92,7 @@ export default function ResumeViewer({ isOpen, onClose }) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
-                  src="/MY_RESUME.pdf#view=FitH&toolbar=1&navpanes=1&scrollbar=1"
+                  src={`${RESUME_URL}#view=FitH&toolbar=1&navpanes=1&scrollbar=1`}
                   className="w-full h-full min-h-[600px] lg:min-h-[800px] rounded-lg shadow-lg border border-gray-300"
                   style={{
                     maxWidth: "900px",
